@@ -17,7 +17,19 @@ end
 d=Date.new(2016,5,28).strftime('%a %b %d %Y')
 
 form = page.forms.first
-binding.pry
+
+form['campingDate'] = d
+form['lengthOfStay'] = 1
+npage=form.submit	
+
+
+a= npage.links.select do |link|
+	link.attributes.children.text == "STANDARD "
+end
+
+p a
+
+
 
 
 

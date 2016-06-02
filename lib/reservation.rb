@@ -6,6 +6,7 @@ class Reservation
 
 	def initialize(date,lengh_night=1,camps)
 		@camps=[]
+		@date=date
 		camps.each do |camp|
 			@camps << Camp.new(date,lengh_night, camp)
 		end
@@ -13,10 +14,10 @@ class Reservation
 
 	def show_available
 		@camps.each do |camp|
-			table=Terminal::Table.new :title=>camp.name, :headings=>['Site#','Site type',
-				'Max # of people', 'Epuip length', 'Price'] do |t|
+			table=Terminal::Table.new :title=>"Camp : #{camp.name} | Date : #{@date}", :headings=>['Site#','Site type',
+				'Max # of people', 'Epuip length', 'Price', 'Handicap'] do |t|
 					t.rows = camp.sites
-			end
+			end			
 			puts table
 		end
 	end

@@ -3,11 +3,12 @@ require 'pry'
 require 'date'
 require 'uri'
 
-FAV = [120090, 120083,120085,120082]
+FAV = [120090, 120083,120085,120082,120070]
 #southcarlsbad
 #san elijo 
 #san onofre
 #san clemente
+#pismo
 uri = URI.escape("http://www.reserveamerica.com/camping/san-onofre-sb/r/campgroundDetails.do?contractCode=CA&parkId=120083")
 mechanize = Mechanize.new{ |agent| agent.user_agent_alias = 'Mac Safari'}
 begin	

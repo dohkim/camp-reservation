@@ -52,10 +52,20 @@ class Camp
 			total=10
 		end
 
-		sites=result.search('.br')
+		sites=result.search('.br')	
+		
+		
+		
 		total.times do |i|		
 			site=sites[i].text.strip.split(/\n+/)
 			site.delete_at(6) and site.delete_at(2) and site.delete_at(0)
+
+			# Handicap check 
+			if sites[i].search('td')[3].children[1]
+				site << "Handicap"
+			else 
+				site << "No Handicap"
+			end
 			@sites << site
 		end		
 	end

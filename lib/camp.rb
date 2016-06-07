@@ -5,7 +5,7 @@ require 'uri'
 class Camp
 	DATE='campingDate'
 	LENGTH_NIGHT='lengthOfStay'
-	attr_reader :page, :form, :submit, :sites, :name
+	attr_reader :page, :form, :submit, :sites, :name, :total
 	def initialize(date,lengh_night=1,camp)
 		@sites=[]
 		url_setup(camp)
@@ -46,17 +46,17 @@ class Camp
 		@name=result.at('#cgroundName').text
 		total=result.at('.matchSummary').text
 		total=total.match(/\A[\d]+/)
-		total=total[0].to_i		
+		@total=total[0].to_i		
 
-		if total >= 10
-			total=10
+		if @total >= 10
+			@total=10
 		end
 
 		sites=result.search('.br')	
 		
 		
 		
-		total.times do |i|		
+		@total.times do |i|		
 			site=sites[i].text.strip.split(/\n+/)
 			site.delete_at(6) and site.delete_at(2) and site.delete_at(0)
 
